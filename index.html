@@ -20,7 +20,7 @@
             const url = document.getElementById('urlInput').value;
             const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
             const fileId = match ? match[1] : 'File ID not found.';
-            document.getElementById('result').innerText = `${fileId}`;
+            document.getElementById('result').innerText = `https://drive.google.com/uc?export=download&id=${fileId}`;
         }
     </script>
 </body>
