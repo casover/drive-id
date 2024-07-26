@@ -13,6 +13,9 @@
         button {
             cursor: pointer;
         }
+        #copyButton {
+            display: none; /* Hide by default */
+        }
     </style>
 </head>
 <body>
@@ -34,9 +37,12 @@
             const url = document.getElementById('urlInput').value;
             const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
             const fileId = match ? match[1] : 'File ID not found.';
-            const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            const downloadUrl = fileId !== 'File ID not found.' ? `https://drive.google.com/uc?export=download&id=${fileId}` : 'File ID not found.';
+
             document.getElementById('result').innerText = downloadUrl;
-            document.getElementById('copyButton').style.display = downloadUrl !== 'File ID not found.' ? 'inline' : 'none';
+
+            // Show or hide the copy button based on whether a valid file ID was found
+            document.getElementById('copyButton').style.display = fileId !== 'File ID not found.' ? 'inline' : 'none';
         }
 
         function copyToClipboard() {
