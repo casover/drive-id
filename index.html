@@ -7,15 +7,19 @@
 </head>
 <body>
     <h1>Google Drive File ID Extractor</h1>
-    <input type="text" id="urlInput" placeholder="أدخل رابط Google Drive" size="50">
-    <button onclick="extractFileId()">استخراج معرّف الملف</button>
+    <input type="text" id="urlInput" placeholder="Enter Google Drive link" size="50">
+    <button onclick="extractFileId()">Extract File ID</button>
     <p id="result"></p>
+
+    <footer>
+        <p>by casover and his girlfriend (kaynzou)</p>
+    </footer>
 
     <script>
         function extractFileId() {
             const url = document.getElementById('urlInput').value;
             const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-            const fileId = match ? match[1] : 'لم يتم العثور على معرّف الملف.';
+            const fileId = match ? match[1] : 'File ID not found.';
             document.getElementById('result').innerText = `${fileId}`;
         }
     </script>
