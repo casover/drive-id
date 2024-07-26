@@ -16,6 +16,11 @@
         #copyButton {
             display: none; /* Hide by default */
         }
+        #copyNotification {
+            color: green;
+            display: none;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -26,6 +31,7 @@
     <div id="container">
         <p id="result"></p>
         <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+        <span id="copyNotification">Copied!</span>
     </div>
 
     <footer>
@@ -48,7 +54,12 @@
         function copyToClipboard() {
             const resultText = document.getElementById('result').innerText;
             navigator.clipboard.writeText(resultText).then(() => {
-                alert('URL copied to clipboard!');
+                // Show notification briefly
+                const notification = document.getElementById('copyNotification');
+                notification.style.display = 'inline';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 1000); // Hide notification after 1 second
             }).catch(err => {
                 console.error('Failed to copy: ', err);
             });
