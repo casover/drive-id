@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Drive File ID Extractor</title>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Google Drive File ID Extractor</h1>
     <input type="text" id="urlInput" placeholder="Enter Google Drive link" size="50">
     <button onclick="extractFileId()">Extract File ID</button>
-    <p id="result"></p>
+
+    <div id="container">
+        <p id="result"></p>
+        <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+    </div>
 
     <footer>
         <p>by casover and his girlfriend (kaynzou)</p>
@@ -20,7 +34,18 @@
             const url = document.getElementById('urlInput').value;
             const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
             const fileId = match ? match[1] : 'File ID not found.';
-            document.getElementById('result').innerText = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            document.getElementById('result').innerText = downloadUrl;
+            document.getElementById('copyButton').style.display = downloadUrl !== 'File ID not found.' ? 'inline' : 'none';
+        }
+
+        function copyToClipboard() {
+            const resultText = document.getElementById('result').innerText;
+            navigator.clipboard.writeText(resultText).then(() => {
+                alert('URL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
         }
     </script>
 </body>
