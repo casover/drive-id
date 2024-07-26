@@ -16,7 +16,7 @@
             const url = document.getElementById('urlInput').value;
             const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
             const fileId = match ? match[1] : 'لم يتم العثور على معرّف الملف.';
-            document.getElementById('result').innerText = `معرّف الملف هو: ${fileId}`;
+            document.getElementById('result').innerText = `${fileId}`;
         }
     </script>
 </body>
